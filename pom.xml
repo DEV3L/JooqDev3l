@@ -28,6 +28,13 @@
       <version>2.1</version>
     </dependency>
     
+    <!-- commons reusable Java components -->
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>3.3.2</version>
+    </dependency>
+    
     <!-- jooq -->
     <dependency>
       <groupId>org.jooq</groupId>
@@ -97,8 +104,9 @@
           <password></password>
         </configuration>
         
+        <!-- run script -->
         <executions>
-          <!-- run script -->
+          <!-- generate -->  
           <execution>
             <id>create-if-not-exist</id>
             <phase>generate-sources</phase>
@@ -107,9 +115,59 @@
             </goals>
             <configuration>
               <srcFiles>
-                <srcFile>src/main/resources/sql/schema_library.sql</srcFile>
-                <srcFile>src/main/resources/sql/table_library_author.sql</srcFile>
+                <srcFile>src/main/resources/sql/generate/schema_library.sql</srcFile>
+                <srcFile>src/main/resources/sql/generate/table_library_author.sql</srcFile>
               </srcFiles>
+            </configuration>
+          </execution>
+          <!-- pre-integration -->
+          <execution>
+            <id>insert</id>
+            <phase>pre-integration-test</phase>
+            <goals>
+              <goal>execute</goal>
+            </goals>
+            <configuration>
+              <autocommit>true</autocommit>
+              <srcFiles>
+                <srcFile>src/main/resources/sql/integration/pre/insert_author.sql</srcFile>
+              </srcFiles>
+            </configuration>
+          </execution>
+          <!-- post-integration -->
+          <execution>
+            <id>cleanup</id>
+            <phase>post-integration-test</phase>
+            <goals>
+              <goal>execute</goal>
+            </goals>
+            <configuration>
+              <autocommit>true</autocommit>
+              <srcFiles>
+                <srcFile>src/main/resources/sql/integration/post/delete_author.sql</srcFile>
+              </srcFiles>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>integration-test</id>
+            <goals>
+              <goal>test</goal>
+            </goals>
+            <phase>integration-test</phase>
+            <configuration>
+              <excludes>
+                <exclude>none</exclude>
+              </excludes>
+              <includes>
+                <include>**/*IT.java</include>
+              </includes>
             </configuration>
           </execution>
         </executions>
@@ -159,22 +217,6 @@
               <inputSchema>library</inputSchema>
             </database>
   
-            <!-- generation parameters -->
-            <generate>
-              <relations>true</relations>
-              <deprecated>true</deprecated>
-              <instanceFields>true</instanceFields>
-              <generatedAnnotation>true</generatedAnnotation>
-              <records>true</records>
-              <pojos>true</pojos>
-              <immutablePojos>false</immutablePojos>
-              <interfaces>true</interfaces>
-              <daos>true</daos>
-              <jpaAnnotations>false</jpaAnnotations>
-              <validationAnnotations>true</validationAnnotations>
-              <globalObjectReferences>true</globalObjectReferences>
-            </generate>
-
             <!-- output directory -->
             <target>
               <packageName>generated.dev3l.jooq</packageName>
