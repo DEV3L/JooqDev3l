@@ -1,1 +1,1 @@
-DELETE FROM `library`.`author` WHERE last_name like 'last%';
+DELETE FROM `library`.`author` WHERE last_name like '%last%';

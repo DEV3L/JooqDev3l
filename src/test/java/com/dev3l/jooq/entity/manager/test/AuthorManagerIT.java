@@ -34,6 +34,8 @@ public class AuthorManagerIT {
 
 	@Test
 	public void testRead() {
+		testCreate();
+		
 		final List<AuthorEntity> authors = authorManager.read(null);
 
 		Assert.assertNotNull(authors);

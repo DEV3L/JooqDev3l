@@ -18,7 +18,7 @@ import org.jooq.SelectJoinStep;
 import com.dev3l.jooq.entity.AuthorEntity;
 import com.dev3l.jooq.entity.mapper.AuthorMapper;
 
-public class AuthorManager {
+public class AuthorManager extends AbstractManager {
 	private static final Logger logger = LogManager.getLogger();
 
 	private DSLContext dslContext = null;
@@ -79,14 +79,8 @@ public class AuthorManager {
 
 		return dslContext.update(AUTHOR).set(AUTHOR.FIRST_NAME, author.getFirstName()).set(AUTHOR.LAST_NAME, author.getLastName()).execute();
 	}
-	
+
 	public Integer delete(final Integer id) {
 		return dslContext.delete(AUTHOR).where(AUTHOR.ID.equal(id)).execute();
-	}
-
-	private Collection<Condition> createCollectionFromSingleCondition(final Condition condition) {
-		final List<Condition> conditions = new ArrayList<Condition>();
-		conditions.add(condition);
-		return conditions;
 	}
 }

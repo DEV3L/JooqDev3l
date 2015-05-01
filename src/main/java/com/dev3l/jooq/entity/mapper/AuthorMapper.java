@@ -7,9 +7,10 @@ import org.jooq.Record;
 import com.dev3l.jooq.entity.AuthorEntity;
 
 public class AuthorMapper {
-	private AuthorMapper() {}
-	
-	public static AuthorEntity map(Record record) {
+	private AuthorMapper() {
+	}
+
+	public static AuthorEntity map(final Record record) {
 		return new AuthorEntity(record.getValue(AUTHOR.ID), record.getValue(AUTHOR.FIRST_NAME), record.getValue(AUTHOR.LAST_NAME));
 	}
 }
