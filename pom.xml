@@ -112,7 +112,7 @@
 					<!-- Configure the database connection here -->
 					<jdbc>
 						<driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</driver>
-						<url>jdbc:sqlserver://swvmconf1sql1:1433</url>
+						<url></url>
 						<user></user>
 						<password></password>
 					</jdbc>
