@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.dev3l.jooq</groupId>
   <artifactId>JooqDev3l</artifactId>
@@ -7,7 +8,7 @@
   <version>trunk-SNAPSHOT</version>
   <name>JooqDev3l</name>
   <url>http://maven.apache.org</url>
-  
+
   <dependencies>
     <!-- junit -->
     <dependency>
@@ -15,26 +16,26 @@
       <artifactId>junit</artifactId>
       <version>4.12</version>
     </dependency>
-    
+
     <!-- log4j -->
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-api</artifactId>
-      <version>2.1</version>
+      <version>2.12.4</version>
     </dependency>
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-core</artifactId>
-      <version>2.1</version>
+      <version>2.12.4</version>
     </dependency>
-    
+
     <!-- commons reusable Java components -->
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-lang3</artifactId>
       <version>3.3.2</version>
     </dependency>
-    
+
     <!-- jooq -->
     <dependency>
       <groupId>org.jooq</groupId>
@@ -51,23 +52,23 @@
       <artifactId>jooq-codegen</artifactId>
       <version>3.5.0</version>
     </dependency>
-    
+
     <!-- javax validation => jooq -->
     <dependency>
       <groupId>javax.validation</groupId>
       <artifactId>validation-api</artifactId>
       <version>1.0.0.GA</version>
     </dependency>
-    
-	<!-- mvn install:install-file -Dfile=sqljdbc4.jar -DgroupId=com.microsoft.sqlserver -DartifactId=sqljdbc4 -Dversion=4.0 -Dpackaging=jar -->
-	<!--
+
+    <!-- mvn install:install-file -Dfile=sqljdbc4.jar -DgroupId=com.microsoft.sqlserver -DartifactId=sqljdbc4 -Dversion=4.0 -Dpackaging=jar -->
+    <!--
 	<dependency>
 		<groupId>com.microsoft.sqlserver</groupId>
 		<artifactId>sqljdbc4</artifactId>
 		<version>4.0</version>
 	</dependency>
 	-->
-	
+
     <!-- mySQL driver -->
     <dependency>
       <groupId>mysql</groupId>
@@ -94,7 +95,7 @@
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>sql-maven-plugin</artifactId>
         <version>1.5</version>
-        
+
         <!-- Manage the plugin's dependency. -->
         <dependencies>
           <dependency>
@@ -112,10 +113,10 @@
           <username>root</username>
           <password></password>
         </configuration>
-        
+
         <!-- run script -->
         <executions>
-          <!-- generate -->  
+          <!-- generate -->
           <execution>
             <id>create-if-not-exist</id>
             <phase>generate-sources</phase>
@@ -159,7 +160,7 @@
           </execution>
         </executions>
       </plugin>
-      
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
@@ -181,14 +182,14 @@
           </execution>
         </executions>
       </plugin>
-      
+
       <!-- jOOQ generation -->
       <plugin>
         <!-- Specify the maven code generator plugin -->
         <groupId>org.jooq</groupId>
         <artifactId>jooq-codegen-maven</artifactId>
         <version>3.5.0</version>
-        
+
         <executions>
           <execution>
             <phase>generate-sources</phase>
@@ -197,7 +198,7 @@
             </goals>
           </execution>
         </executions>
-        
+
         <!-- Manage the plugin's dependency. -->
         <dependencies>
           <dependency>
@@ -225,7 +226,7 @@
               <excludes></excludes>
               <inputSchema>library</inputSchema>
             </database>
-  
+
             <!-- output directory -->
             <target>
               <packageName>generated.dev3l.jooq</packageName>
